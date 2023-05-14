@@ -10,12 +10,18 @@ Easy way to burn a bootable flash drive with ISO.
 
 ```bash
 git clone https://github.com/rendick/isowrt.git
-cd isowrt
-chmod +x isowrt.sh
-./isowrt.sh
+./main
 ```
 
 **Soon I will make a PKGBUILD file for Arch-based distributions.**
+
+# Compile 
+
+```bash
+git clone https://github.com/rendick/isowrt.git
+rustc src/main.rs
+./main
+```
 
 # Goal
 

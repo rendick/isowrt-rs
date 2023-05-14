@@ -2,6 +2,8 @@
 
 Easy way to burn a bootable flash drive with ISO.
 
+[Bash Shell version](https://github.com/rendick/isowrt)
+
 # Available OS
 
 **All UNIX systems are supported.**
@@ -22,10 +24,6 @@ git clone https://github.com/rendick/isowrt.git
 rustc src/main.rs
 ./main
 ```
-
-# Goal
-
-Rewrite this script in Rust for more speed and features
 
 # License
 

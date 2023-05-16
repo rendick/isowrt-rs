@@ -12,6 +12,7 @@ Easy way to burn a bootable flash drive with ISO.
 
 ```bash
 git clone https://github.com/rendick/isowrt.git
+cd isowrt
 ./main
 ```
 
@@ -21,6 +22,7 @@ git clone https://github.com/rendick/isowrt.git
 
 ```bash
 git clone https://github.com/rendick/isowrt.git
+cd isowrt
 rustc src/main.rs
 ./main
 ```

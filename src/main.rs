@@ -2,6 +2,7 @@ use std::io;
 use std::process::Command;
 
 fn main() {
+
     let home = String::from("whoami");
 
     let home_output = Command::new(home)
@@ -9,8 +10,6 @@ fn main() {
         .expect("Failed to execute command");
 
     let home_stgout = String::from_utf8_lossy(&home_output.stdout);
-
-    // println!("stdout: {}", home_stgout);
 
     let ls = String::from("ls");
     let ls_args = format!("/home/{}/", home_stgout.trim());
@@ -37,7 +36,6 @@ fn main() {
 
     let lsblk = String::from("lsblk");
 
-    
     let lsblk_output = Command::new(lsblk)
         .output()
         .expect("failed");
@@ -50,4 +48,5 @@ fn main() {
     println!("Enter your flash drive name: ");
     io::stdin().read_line(&mut lsblk_name).expect("failed to check your flash drive name");
     println!("Your flash drive name: {}", lsblk_name.trim());
+
 }

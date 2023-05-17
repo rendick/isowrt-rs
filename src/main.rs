@@ -2,7 +2,6 @@ use std::io;
 use std::process::Command;
 
 fn main() {
-
     let home = String::from("whoami");
 
     let home_output = Command::new(home)
@@ -30,9 +29,25 @@ fn main() {
         "Enter the folder where the iso is located (The folder must be in {}):",
         home_stgout.trim()
     );
-    io::stdin().read_line(&mut iso_folder).expect("Hello");
+    io::stdin()
+        .read_line(&mut iso_folder)
+        .expect("Hello");
 
     println!("You select: {}", iso_folder);
+
+    let find = String::from("find");
+    // let find_args = format!("/home/rendick/Downloads  -type f -name '*.png'");
+    let find_output = Command::new(find)
+        .arg("/home/rendick/Downloads")
+        .arg("-type")
+        .arg("f")
+        .arg("-name")
+        .arg("*.png")
+        .output()
+        .expect("failed to execute command");
+
+    let find_stdout = String::from_utf8_lossy(&find_output.stdout);
+    println!("{}", find_stdout);
 
     let lsblk = String::from("lsblk");
 
@@ -46,7 +61,8 @@ fn main() {
 
     let mut lsblk_name = String::new();
     println!("Enter your flash drive name: ");
-    io::stdin().read_line(&mut lsblk_name).expect("failed to check your flash drive name");
+    io::stdin()
+        .read_line(&mut lsblk_name)
+        .expect("failed to check your flash drive name");
     println!("Your flash drive name: {}", lsblk_name.trim());
-
 }

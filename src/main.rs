@@ -42,7 +42,7 @@ fn main() {
         .arg("-type")
         .arg("f")
         .arg("-name")
-        .arg("*.png")
+        .arg("*.iso")
         .output()
         .expect("failed to execute command");
 

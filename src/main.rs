@@ -3,20 +3,15 @@ use std::process::Command;
 
 fn main() {
     // whoami
-    let home = String::from("whoami");
-
-    let home_output = Command::new(home)
+    let home_output = Command::new("whoami")
         .output()
         .expect("Failed to execute command");
 
     let home_stgout = String::from_utf8_lossy(&home_output.stdout);
 
     // ls
-    let ls = String::from("ls");
-    let ls_args = format!("/home/{}/", home_stgout.trim());
-
-    let ls_output = Command::new(ls)
-        .arg(&ls_args)
+    let ls_output = Command::new("ls")
+        .arg(format!("/home/{}/", home_stgout.trim()))
         .output()
         .expect("Failed to execute command");
 
@@ -31,34 +26,37 @@ fn main() {
         "Enter the folder where the iso is located (The folder must be in {}):",
         home_stgout.trim()
     );
-    io::stdin().read_line(&mut iso_folder).expect("Hello");
+    io::stdin().read_line(&mut iso_folder).expect("Failed to read input");
 
-    println!("You select: {}", iso_folder);
+    iso_folder = iso_folder.trim().to_string();
+
+    println!("\nYou selected: {}\n", iso_folder);
+
+    println!("All ISO files in /home/{}/{}:", home_stgout.trim(), iso_folder);
 
     // find
-    let find = String::from("find");
-    let find_output = Command::new(find)
-        .arg("/home/rendick/Downloads")
+    let find_output = Command::new("find")
+        .arg(format!("/home/{}/{}", home_stgout.trim(), iso_folder))
         .arg("-type")
         .arg("f")
         .arg("-name")
         .arg("*.iso")
         .output()
-        .expect("failed to execute command");
+        .expect("Failed to execute command");
 
     let find_stdout = String::from_utf8_lossy(&find_output.stdout);
     println!("{}", find_stdout);
 
     let mut iso_name = String::new();
-    println!("Enter the ISO file name: ");
+    println!("Enter the ISO path: ");
     io::stdin()
         .read_line(&mut iso_name)
-        .expect("failed");
+        .expect("Failed to read input");
 
     // lsblk
-    let lsblk = String::from("lsblk");
-
-    let lsblk_output = Command::new(lsblk).output().expect("failed");
+    let lsblk_output = Command::new("lsblk")
+        .output()
+        .expect("Failed to execute command");
 
     let lsblk_stdout = String::from_utf8_lossy(&lsblk_output.stdout);
 
@@ -68,8 +66,8 @@ fn main() {
     println!("Enter your flash drive name: ");
     io::stdin()
         .read_line(&mut lsblk_name)
-        .expect("failed to check your flash drive name");
-    
+        .expect("Failed to read input");
+
     println!(
         "Your flash drive name: {}", 
         lsblk_name.trim()

@@ -29,5 +29,5 @@ rustc src/main.rs
 
 # License
 
-**GNU GPL v3**
+**GNU AGPL v3**
 

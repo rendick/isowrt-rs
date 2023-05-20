@@ -2,6 +2,7 @@ use std::io;
 use std::process::Command;
 
 fn main() {
+    // whoami
     let home = String::from("whoami");
 
     let home_output = Command::new(home)
@@ -10,6 +11,7 @@ fn main() {
 
     let home_stgout = String::from_utf8_lossy(&home_output.stdout);
 
+    // ls
     let ls = String::from("ls");
     let ls_args = format!("/home/{}/", home_stgout.trim());
 
@@ -29,14 +31,12 @@ fn main() {
         "Enter the folder where the iso is located (The folder must be in {}):",
         home_stgout.trim()
     );
-    io::stdin()
-        .read_line(&mut iso_folder)
-        .expect("Hello");
+    io::stdin().read_line(&mut iso_folder).expect("Hello");
 
     println!("You select: {}", iso_folder);
 
+    // find
     let find = String::from("find");
-    // let find_args = format!("/home/rendick/Downloads  -type f -name '*.png'");
     let find_output = Command::new(find)
         .arg("/home/rendick/Downloads")
         .arg("-type")
@@ -49,11 +49,16 @@ fn main() {
     let find_stdout = String::from_utf8_lossy(&find_output.stdout);
     println!("{}", find_stdout);
 
+    let mut iso_name = String::new();
+    println!("Enter the ISO file name: ");
+    io::stdin()
+        .read_line(&mut iso_name)
+        .expect("failed");
+
+    // lsblk
     let lsblk = String::from("lsblk");
 
-    let lsblk_output = Command::new(lsblk)
-        .output()
-        .expect("failed");
+    let lsblk_output = Command::new(lsblk).output().expect("failed");
 
     let lsblk_stdout = String::from_utf8_lossy(&lsblk_output.stdout);
 
@@ -64,5 +69,9 @@ fn main() {
     io::stdin()
         .read_line(&mut lsblk_name)
         .expect("failed to check your flash drive name");
-    println!("Your flash drive name: {}", lsblk_name.trim());
+    
+    println!(
+        "Your flash drive name: {}", 
+        lsblk_name.trim()
+    );
 }

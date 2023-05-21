@@ -1,4 +1,4 @@
-# isowrt
+# isowrt-rs
 
 Easy way to burn a bootable flash drive with ISO.
 

@@ -11,7 +11,7 @@ Easy way to burn a bootable flash drive with ISO.
 # Install
 
 ```bash
-git clone https://github.com/rendick/isowrt.git
+git clone https://github.com/rendick/isowrt-rs.git
 cd isowrt
 ./main
 ```
@@ -21,7 +21,7 @@ cd isowrt
 # Compile 
 
 ```bash
-git clone https://github.com/rendick/isowrt.git
+git clone https://github.com/rendick/isowrt-rs.git
 cd isowrt
 rustc src/main.rs
 ./main

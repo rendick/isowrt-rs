@@ -1,5 +1,7 @@
 # isowrt-rs
 
+### This project is not yet complete! Check out the Bash Shell version: [click](https://github.com/rendick/isowrt)
+
 Easy way to burn a bootable flash drive with ISO.
 
 [Bash Shell version](https://github.com/rendick/isowrt)

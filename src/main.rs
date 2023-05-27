@@ -53,6 +53,8 @@ fn main() {
         .read_line(&mut iso_name)
         .expect("Failed to read input");
 
+    println!("\nYou selected this ISO: {}", iso_name);
+
     // lsblk
     let lsblk_output = Command::new("lsblk")
         .output()
@@ -72,4 +74,22 @@ fn main() {
         "Your flash drive name: {}", 
         lsblk_name.trim()
     );
+
+    // main command
+    let dd_output = Command::new("sudo")
+        .arg("dd")
+        .arg(format!("if={}", iso_name.trim() ))
+        .arg(format!("of={}", lsblk_name.trim()))
+        .arg("bs=4M")
+        .arg("status=progress")
+        .arg("&&")
+        .arg("sync")
+        .output()
+        .expect("Failed to execute dd command");
+
+    println!("{:?}", dd_output);
+
+    let dd_stdout = String::from_utf8_lossy(&dd_output.stdout);
+    println!("{}", dd_stdout);
+
 }
